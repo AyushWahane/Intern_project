@@ -39,7 +39,34 @@ def attendance(name):
             dStr = time_now.strftime('%d/%m/%Y')
             f.writelines(f'\n{name},{tStr},{dStr}')
 
+def fb_insert:
+    import firebase_admin
 
+    cred_obj = firebase_admin.credentials.Certificate('....path to file')
+    default_app = firebase_admin.initialize_app(cred_object, {
+        'databaseURL':databaseURL
+        })
+    import json
+    with open("book_info.json", "r") as f:
+        file_contents = json.load(f)
+    ref.set(file_contents)
+    ref = db.reference("/")
+    ref.set({
+        "Books":
+        {
+            "Best_Sellers": -1
+        }
+    })
+    ref = db.reference("/Books/Best_Sellers")
+    import json
+    with open("book_info.json", "r") as f:
+        file_contents = json.load(f)
+
+    for key, value in file_contents.items():
+        ref.push().set(value)
+
+            
+            
 encodeListKnown = faceEncodings(images)
 print('All Encodings Complete!!!')
 
